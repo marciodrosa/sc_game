@@ -1,4 +1,5 @@
 #include "TitleModule.h"
+#include "CharacterSelectionModule.h"
 #include <SDL_image.h>
 
 using namespace sc;
@@ -29,9 +30,10 @@ void TitleModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 
 void TitleModule::Finish(GameState& state)
 {
-
 }
 
 void TitleModule::HandleInput(SDL_KeyboardEvent& inputEvent, ModuleResult& result)
 {
+	if (inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
+		result.NextGameModule = new CharacterSelectionModule;
 }

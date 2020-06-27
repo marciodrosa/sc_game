@@ -1,5 +1,6 @@
 #include "GameLoop.h"
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 
 using namespace sc;
 
@@ -7,14 +8,17 @@ GameLoop::GameLoop(GameState& state)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
+	TTF_Init();
 	this->gameState = &state;
 	this->gameModule = nullptr;
+	this->running = false;
 }
 
 GameLoop::~GameLoop()
 {
 	SetModule(nullptr);
 	IMG_Quit();
+	TTF_Quit();
 	SDL_Quit();
 }
 
@@ -23,7 +27,7 @@ void GameLoop::Run()
 	SDL_Window* window = SDL_CreateWindow("Segunda Cinefila", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 320, 240, 0); // SDL_WINDOW_FULLSCREEN
 	SDL_ShowCursor(0);
 	render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	bool running = true;
+	running = true;
 	while (running)
 	{
 		SDL_RenderClear(render);
@@ -75,4 +79,6 @@ void GameLoop::HandleModuleResult(ModuleResult& moduleResult)
 {
 	if (moduleResult.NextGameModule != nullptr)
 		SetModule(moduleResult.NextGameModule);
+	if (moduleResult.FinishGame)
+		running = false;
 }

@@ -10,5 +10,6 @@ namespace sc
 	public:
 		ModuleResult();
 		GameModule* NextGameModule;
+		bool FinishGame;
 	};
 }
