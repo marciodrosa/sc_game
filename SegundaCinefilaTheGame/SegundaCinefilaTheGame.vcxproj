@@ -74,8 +74,8 @@
     <LibraryPath>ThirdParty\SDL2-2.0.12\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>ThirdParty\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
-    <LibraryPath>ThirdParty\SDL2-2.0.12\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>ThirdParty\SDL2_image-2.0.5\include;ThirdParty\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
+    <LibraryPath>ThirdParty\SDL2-2.0.12\lib;ThirdParty\SDL2_image-2.0.5\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,7 +97,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -131,10 +131,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameLoop.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TitleModule.cpp" />
+    <ClCompile Include="ModuleResult.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLoop.h" />
+    <ClInclude Include="GameModule.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="TitleModule.h" />
+    <ClInclude Include="ModuleResult.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
