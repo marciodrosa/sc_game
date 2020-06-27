@@ -1,8 +1,10 @@
 #pragma once
 
 #include "GameModule.h"
+#include "CharacterSelectionIcon.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <vector>
 
 namespace sc
 {
@@ -15,11 +17,13 @@ namespace sc
 		void Start(GameState& state) override;
 		void Update(GameState& state, SDL_Renderer* render, ModuleResult& result) override;
 		void Finish(GameState& state) override;
-		void HandleInput(SDL_KeyboardEvent& inputEvent, ModuleResult& result) override;
+		void HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result) override;
 
 	private:
+		void DrawCharacterName(GameState& state, SDL_Renderer* render);
 		SDL_Surface* mainLabelSurface;
 		SDL_Texture* mainLabelTexture;
 		TTF_Font* font;
+		std::vector<CharacterSelectionIcon*> characterIcons;
 	};
 }

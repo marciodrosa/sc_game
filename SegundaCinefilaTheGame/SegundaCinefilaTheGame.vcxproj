@@ -130,18 +130,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CharacterSelectionIcon.cpp" />
     <ClCompile Include="CharacterSelectionModule.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="ImagesProvider.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TitleModule.cpp" />
     <ClCompile Include="ModuleResult.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterSelectionIcon.h" />
     <ClInclude Include="CharacterSelectionModule.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameModule.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="ImagesProvider.h" />
     <ClInclude Include="TitleModule.h" />
     <ClInclude Include="ModuleResult.h" />
   </ItemGroup>

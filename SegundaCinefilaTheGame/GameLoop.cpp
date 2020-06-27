@@ -1,6 +1,8 @@
 #include "GameLoop.h"
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include "ImagesProvider.h"
+#include "Constants.h"
 
 using namespace sc;
 
@@ -20,13 +22,15 @@ GameLoop::~GameLoop()
 	IMG_Quit();
 	TTF_Quit();
 	SDL_Quit();
+	ImagesProvider::Release();
 }
 
 void GameLoop::Run()
 {
-	SDL_Window* window = SDL_CreateWindow("Segunda Cinefila", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 320, 240, 0); // SDL_WINDOW_FULLSCREEN
+	SDL_Window* window = SDL_CreateWindow("Segunda Cinefila", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SC_SCREEN_WIDTH, SC_SCREEN_HEIGHT, 0); // SDL_WINDOW_FULLSCREEN
 	SDL_ShowCursor(0);
 	render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	ImagesProvider::Get()->LoadImages();
 	running = true;
 	while (running)
 	{
@@ -41,7 +45,7 @@ void GameLoop::Run()
 				if (gameModule != nullptr)
 				{
 					ModuleResult moduleResult;
-					gameModule->HandleInput(event.key, moduleResult);
+					gameModule->HandleInput(*gameState, event.key, moduleResult);
 					HandleModuleResult(moduleResult);
 				}
 			}

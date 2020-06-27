@@ -13,6 +13,6 @@ namespace sc
 		virtual void Start(GameState& state) = 0;
 		virtual void Update(GameState& state, SDL_Renderer* render, ModuleResult& result) = 0;
 		virtual void Finish(GameState& state) = 0;
-		virtual void HandleInput(SDL_KeyboardEvent& inputEvent, ModuleResult& result) = 0;
+		virtual void HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result) = 0;
 	};
 }
