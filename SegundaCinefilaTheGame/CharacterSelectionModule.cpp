@@ -1,4 +1,5 @@
 #include "CharacterSelectionModule.h"
+#include "IntroModule.h"
 #include "Constants.h"
 #include <SDL_image.h>
 
@@ -86,7 +87,7 @@ void CharacterSelectionModule::Finish(GameState& state)
 void CharacterSelectionModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result)
 {
 	if (inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
-		result.FinishGame = true;
+		result.NextGameModule = new IntroModule;
 	else if (inputEvent.keysym.sym == SDLK_LEFT)
 	{
 		state.SelectedCharacterIndex--;

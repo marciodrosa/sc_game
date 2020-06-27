@@ -136,6 +136,7 @@
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="ImagesProvider.cpp" />
+    <ClCompile Include="IntroModule.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TitleModule.cpp" />
     <ClCompile Include="ModuleResult.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="GameModule.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="ImagesProvider.h" />
+    <ClInclude Include="IntroModule.h" />
     <ClInclude Include="TitleModule.h" />
     <ClInclude Include="ModuleResult.h" />
   </ItemGroup>
