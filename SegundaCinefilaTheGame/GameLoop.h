@@ -23,5 +23,6 @@ namespace sc
 		SDL_Renderer* render;
 		bool running;
 		void HandleModuleResult(ModuleResult& moduleResult);
+		void PoolEvents();
 	};
 }

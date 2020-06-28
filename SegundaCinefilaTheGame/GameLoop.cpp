@@ -34,22 +34,9 @@ void GameLoop::Run()
 	running = true;
 	while (running)
 	{
+		unsigned int timeStart = SDL_GetTicks();
 		SDL_RenderClear(render);
-		SDL_Event event;
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type == SDL_QUIT)
-				running = false;
-			else if (event.type == SDL_KEYDOWN)
-			{
-				if (gameModule != nullptr)
-				{
-					ModuleResult moduleResult;
-					gameModule->HandleInput(*gameState, event.key, moduleResult);
-					HandleModuleResult(moduleResult);
-				}
-			}
-		}
+		PoolEvents();
 		if (gameModule != nullptr)
 		{
 			ModuleResult moduleResult;
@@ -57,7 +44,10 @@ void GameLoop::Run()
 			HandleModuleResult(moduleResult);
 		}
 		SDL_RenderPresent(render);
-		SDL_Delay(100); // todo fps
+		unsigned int timeEnd = SDL_GetTicks();
+		unsigned int frameTime = timeEnd < timeStart;
+		if (frameTime < 33)
+			SDL_Delay(33 - frameTime);
 	}
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(window);
@@ -85,4 +75,23 @@ void GameLoop::HandleModuleResult(ModuleResult& moduleResult)
 		SetModule(moduleResult.NextGameModule);
 	if (moduleResult.FinishGame)
 		running = false;
+}
+
+void GameLoop::PoolEvents()
+{
+	SDL_Event event;
+	while (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_QUIT)
+			running = false;
+		else if (event.type == SDL_KEYDOWN)
+		{
+			if (gameModule != nullptr)
+			{
+				ModuleResult moduleResult;
+				gameModule->HandleInput(*gameState, event.key, moduleResult);
+				HandleModuleResult(moduleResult);
+			}
+		}
+	}
 }
