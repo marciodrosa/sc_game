@@ -1,6 +1,7 @@
 #include "MovieModule.h"
 #include "Constants.h"
 #include "ImagesProvider.h"
+#include "EndingModule.h"
 #include <SDL_image.h>
 
 using namespace std;
@@ -65,7 +66,10 @@ void MovieModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, M
 	{
 		state.CurrentMovieIndex++;
 		if (state.CurrentMovieIndex >= state.Movies.size())
+		{
 			state.CurrentMovieIndex = state.Movies.size() - 1;
+			result.NextGameModule = new EndingModule;
+		}
 		else
 			result.NextGameModule = new MovieModule;
 	}

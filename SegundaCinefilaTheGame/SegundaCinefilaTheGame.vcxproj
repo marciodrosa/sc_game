@@ -133,6 +133,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterSelectionIcon.cpp" />
     <ClCompile Include="CharacterSelectionModule.cpp" />
+    <ClCompile Include="EndingModule.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="ImagesProvider.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="CharacterSelectionIcon.h" />
     <ClInclude Include="CharacterSelectionModule.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="EndingModule.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameModule.h" />
     <ClInclude Include="GameState.h" />
