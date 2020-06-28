@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "ImagesProvider.h"
 #include "EndingModule.h"
+#include "ExtraModule.h"
 #include <SDL_image.h>
 
 using namespace std;
@@ -71,7 +72,12 @@ void MovieModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, M
 			result.NextGameModule = new EndingModule;
 		}
 		else
-			result.NextGameModule = new MovieModule;
+		{
+			if (state.Movies[state.CurrentMovieIndex].IsExtra)
+				result.NextGameModule = new ExtraModule;
+			else
+				result.NextGameModule = new MovieModule;
+		}
 	}
 	else if (inputEvent.keysym.sym == SDLK_LEFT)
 	{
