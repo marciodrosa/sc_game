@@ -37,7 +37,7 @@ void TitleModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 	destRect.w = SC_SCREEN_WIDTH;
 	destRect.h = SC_SCREEN_HEIGHT;
 	SDL_RenderCopy(render, logoTexture, nullptr, &destRect);
-	text.Render(render, (SC_SCREEN_WIDTH - text.Width()) / 2, 200);
+	text.Render(render, (SC_SCREEN_WIDTH - text.GetWidth()) / 2, 200);
 }
 
 void TitleModule::Finish(GameState& state)

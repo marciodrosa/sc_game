@@ -16,8 +16,8 @@ namespace sc
 		void SetText(std::string text, int fontSize, int width, int animationSpeed, bool animated, AnimationListener* animationListener = nullptr);
 		void ForceFinishAnimation();
 		bool IsAnimating();
-		int Width();
-		int Height();
+		int GetWidth();
+		int GetHeight();
 		void Render(SDL_Renderer* render, int x, int y);
 	private:
 		void AnimateText();

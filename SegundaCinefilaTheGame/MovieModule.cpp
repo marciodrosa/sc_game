@@ -47,7 +47,7 @@ void MovieModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 	destRect.w = movieImage->w;
 	destRect.h = movieImage->h;
 	SDL_RenderCopy(render, movieTexture, nullptr, &destRect);
-	text.Render(render, destRect.x + destRect.w + 10, (SC_SCREEN_HEIGHT - text.Height()) / 2);
+	text.Render(render, destRect.x + destRect.w + 10, (SC_SCREEN_HEIGHT - text.GetHeight()) / 2);
 	hands.Render(render, 20, SC_SCREEN_HEIGHT - hands.GetHeight() - 20);
 }
 

@@ -2,6 +2,7 @@
 
 #include "GameModule.h"
 #include "Hands.h"
+#include "AnimatedText.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <vector>
@@ -20,9 +21,7 @@ namespace sc
 		void HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result) override;
 
 	private:
-		SDL_Surface* mainLabelSurface;
-		SDL_Texture* mainLabelTexture;
-		TTF_Font* font;
+		AnimatedText text;
 		Hands hands;
 	};
 }

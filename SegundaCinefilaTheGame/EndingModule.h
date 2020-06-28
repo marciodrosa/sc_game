@@ -2,6 +2,7 @@
 
 #include "GameModule.h"
 #include "Hands.h"
+#include "AnimatedText.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <vector>
@@ -21,13 +22,9 @@ namespace sc
 
 	private:
 		SDL_Texture* characterTexture;
-		SDL_Surface* mainLabelSurface;
-		SDL_Texture* mainLabelTexture;
-		SDL_Surface* characterLabelSurface;
-		SDL_Texture* characterLabelTexture;
-		SDL_Surface* theEndLabelSurface;
-		SDL_Texture* theEndLabelTexture;
-		TTF_Font* font;
+		AnimatedText mainLabelText;
+		AnimatedText characterLabelText;
+		AnimatedText theEndLabelText;
 		Hands hands;
 	};
 }

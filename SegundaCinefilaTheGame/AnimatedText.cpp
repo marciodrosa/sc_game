@@ -46,12 +46,12 @@ bool AnimatedText::IsAnimating()
 	return targetText != currentText;
 }
 
-int AnimatedText::Width()
+int AnimatedText::GetWidth()
 {
 	return textSurface != nullptr ? textSurface->w : 0;
 }
 
-int AnimatedText::Height()
+int AnimatedText::GetHeight()
 {
 	return textSurface != nullptr ? textSurface->h : 0;
 }
