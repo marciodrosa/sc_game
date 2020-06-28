@@ -32,7 +32,7 @@ void CharacterSelectionModule::Start(GameState& state)
 	whiteColor.g = 255;
 	whiteColor.b = 255;
 	whiteColor.a = 255;
-	mainLabelSurface = TTF_RenderUTF8_Blended(font, "Selecione o seu cinefilo:", whiteColor);
+	mainLabelSurface = TTF_RenderText_Blended(font, "Selecione o seu cinéfilo:", whiteColor);
 	for (Character& character : state.Characters)
 	{
 		characterIcons.push_back(new CharacterSelectionIcon(&character));
@@ -68,7 +68,7 @@ void CharacterSelectionModule::DrawCharacterName(GameState& state, SDL_Renderer*
 	whiteColor.g = 255;
 	whiteColor.b = 255;
 	whiteColor.a = 255;
-	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, name.c_str(), whiteColor);
+	SDL_Surface* surface = TTF_RenderText_Blended(font, name.c_str(), whiteColor);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(render, surface);
 	SDL_Rect destRect;
 	destRect.x = (SC_SCREEN_WIDTH - surface->w) / 2;

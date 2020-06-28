@@ -14,6 +14,8 @@ EndingModule::EndingModule()
 	mainLabelTexture = nullptr;
 	characterLabelSurface = nullptr;
 	characterLabelTexture = nullptr;
+	theEndLabelSurface = nullptr;
+	theEndLabelTexture = nullptr;
 	characterTexture = nullptr;
 	font = nullptr;
 }
@@ -24,6 +26,8 @@ EndingModule::~EndingModule()
 	SDL_DestroyTexture(mainLabelTexture);
 	SDL_FreeSurface(characterLabelSurface);
 	SDL_DestroyTexture(characterLabelTexture);
+	SDL_FreeSurface(theEndLabelSurface);
+	SDL_DestroyTexture(theEndLabelTexture);
 	SDL_DestroyTexture(characterTexture);
 	TTF_CloseFont(font);
 }
@@ -39,10 +43,11 @@ void EndingModule::Start(GameState& state)
 	Character& character = state.Characters[state.SelectedCharacterIndex];
 	stringstream endingLabel;
 	stringstream characterLabel;
-	endingLabel << "E assim, com muita sabedoria, " << character.Name << " fez a escolha de seus filmes favoritos para a SEGUNDA CINÉFILA vindoura." << endl << endl << "FIM";
+	endingLabel << "E assim, com muita sabedoria, " << character.Name << " fez a escolha de seus filmes favoritos para a SEGUNDA CINÉFILA vindoura.";
 	characterLabel << '"' << character.EndingLine << '"';
 	mainLabelSurface = TTF_RenderText_Blended_Wrapped(font, endingLabel.str().c_str(), whiteColor, SC_SCREEN_WIDTH - 20);
 	characterLabelSurface = TTF_RenderText_Blended_Wrapped(font, characterLabel.str().c_str(), whiteColor, SC_SCREEN_WIDTH - 20);
+	theEndLabelSurface = TTF_RenderText_Blended(font, "FIM", whiteColor);
 }
 
 void EndingModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
@@ -55,6 +60,8 @@ void EndingModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& 
 		mainLabelTexture = SDL_CreateTextureFromSurface(render, mainLabelSurface);
 	if (characterLabelTexture == nullptr)
 		characterLabelTexture = SDL_CreateTextureFromSurface(render, characterLabelSurface);
+	if (theEndLabelTexture == nullptr)
+		theEndLabelTexture = SDL_CreateTextureFromSurface(render, theEndLabelSurface);
 	SDL_Rect destRect;
 	destRect.x = (SC_SCREEN_WIDTH - mainLabelSurface->w) / 2;
 	destRect.y = 10;
@@ -71,6 +78,11 @@ void EndingModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& 
 	destRect.w = characterLabelSurface->w;
 	destRect.h = characterLabelSurface->h;
 	SDL_RenderCopy(render, characterLabelTexture, nullptr, &destRect);
+	destRect.x = (SC_SCREEN_WIDTH - theEndLabelSurface->w) / 2;
+	destRect.y = destRect.y + destRect.h + 10;
+	destRect.w = theEndLabelSurface->w;
+	destRect.h = theEndLabelSurface->h;
+	SDL_RenderCopy(render, theEndLabelTexture, nullptr, &destRect);
 }
 
 void EndingModule::Finish(GameState& state)

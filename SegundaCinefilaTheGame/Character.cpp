@@ -15,13 +15,13 @@ vector<Character> Character::GetCharacters()
 
 	Character julia;
 	julia.Id = CharacterId::JULIA;
-	julia.Name = "Julia";
+	julia.Name = "Júlia";
 	julia.EndingLine = "Senti falta de algum filme com o Redmayne, mas bacana fora isso.";
 	result.push_back(julia);
 
 	Character marcio;
 	marcio.Id = CharacterId::MARCIO;
-	marcio.Name = "Marcio";
+	marcio.Name = "Márcio";
 	marcio.EndingLine = "Vencedores não perdem!";
 	result.push_back(marcio);
 

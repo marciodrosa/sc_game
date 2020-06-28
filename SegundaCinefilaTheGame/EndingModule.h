@@ -24,6 +24,8 @@ namespace sc
 		SDL_Texture* mainLabelTexture;
 		SDL_Surface* characterLabelSurface;
 		SDL_Texture* characterLabelTexture;
+		SDL_Surface* theEndLabelSurface;
+		SDL_Texture* theEndLabelTexture;
 		TTF_Font* font;
 	};
 }
