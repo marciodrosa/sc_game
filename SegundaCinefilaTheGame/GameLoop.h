@@ -24,6 +24,7 @@ namespace sc
 		bool running;
 		bool sdlInitiated;
 		bool moduleInputEnabled;
+		void RenderMargin();
 		void HandleModuleResult(ModuleResult& moduleResult);
 		void PoolEvents();
 		void InitSDLAndResources();

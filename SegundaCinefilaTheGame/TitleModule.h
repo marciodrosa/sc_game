@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameModule.h"
+#include "AnimatedText.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -20,8 +21,6 @@ namespace sc
 	private:
 		SDL_Surface* logoImage;
 		SDL_Texture* logoTexture;
-		SDL_Surface* mainLabelSurface;
-		SDL_Texture* mainLabelTexture;
-		TTF_Font* font;
+		AnimatedText text;
 	};
 }

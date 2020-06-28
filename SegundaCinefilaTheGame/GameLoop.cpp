@@ -26,7 +26,7 @@ GameLoop::~GameLoop()
 void GameLoop::Run()
 {
 	InitSDLAndResources();
-	SDL_Window* window = SDL_CreateWindow("Segunda Cinefila", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SC_SCREEN_WIDTH, SC_SCREEN_HEIGHT, 0); // SDL_WINDOW_FULLSCREEN
+	SDL_Window* window = SDL_CreateWindow("Segunda Cinefila", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SC_SCREEN_WIDTH, SC_SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN);
 	SDL_ShowCursor(0);
 	render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	running = true;
@@ -42,6 +42,7 @@ void GameLoop::Run()
 			gameModule->Update(*gameState, render, moduleResult);
 			HandleModuleResult(moduleResult);
 		}
+		RenderMargin();
 		SDL_RenderPresent(render);
 		unsigned int timeEnd = SDL_GetTicks();
 		unsigned int frameTime = timeEnd < timeStart;
@@ -68,6 +69,17 @@ void GameLoop::SetModule(GameModule* gameModule)
 		if (this->gameModule != nullptr)
 			this->gameModule->Start(*gameState);
 	}
+}
+
+void GameLoop::RenderMargin()
+{
+	SDL_SetRenderDrawColor(render, 255, 255, 255, 255);
+	SDL_Rect rect;
+	rect.x = 0;
+	rect.y = 0;
+	rect.w = SC_SCREEN_WIDTH;
+	rect.h = SC_SCREEN_HEIGHT;
+	SDL_RenderDrawRect(render, &rect);
 }
 
 void GameLoop::HandleModuleResult(ModuleResult& moduleResult)
