@@ -12,33 +12,21 @@ using namespace sc;
 
 MovieModule::MovieModule()
 {
-	mainLabelSurface = nullptr;
-	mainLabelTexture = nullptr;
 	movieTexture = nullptr;
-	font = nullptr;
 }
 
 MovieModule::~MovieModule()
 {
-	SDL_FreeSurface(mainLabelSurface);
-	SDL_DestroyTexture(mainLabelTexture);
 	SDL_DestroyTexture(movieTexture);
-	TTF_CloseFont(font);
 }
 
 void MovieModule::Start(GameState& state)
 {
-	font = TTF_OpenFont("Fonts/CrimsonText-Bold.ttf", 11);
-	SDL_Color whiteColor;
-	whiteColor.r = 255;
-	whiteColor.g = 255;
-	whiteColor.b = 255;
-	whiteColor.a = 255;
 	Movie& movie = state.Movies[state.CurrentMovieIndex];
-	mainLabelSurface = TTF_RenderText_Blended_Wrapped(font, movie.GetFullDescription().c_str(), whiteColor, 160);
 	hands.Left = state.CurrentMovieIndex > 0;
 	hands.Right = state.CurrentMovieIndex < state.Movies.size() - 1;
 	hands.Ok = state.CurrentMovieIndex == state.Movies.size() - 1;
+	text.SetText(movie.GetFullDescription(), 11, 160, 1, true, this);
 	if (movie.IsExtra)
 		MusicPlayer::Get()->PlayExtraMusic();
 	else
@@ -53,19 +41,13 @@ void MovieModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 	SDL_Surface* movieImage = ResourcesManager::Get()->GetMovieImage(movie.Id);
 	if (movieTexture == nullptr)
 		movieTexture = SDL_CreateTextureFromSurface(render, movieImage);
-	if (mainLabelTexture == nullptr)
-		mainLabelTexture = SDL_CreateTextureFromSurface(render, mainLabelSurface);
 	SDL_Rect destRect;
 	destRect.x = 10;
 	destRect.y = (SC_SCREEN_HEIGHT - movieImage->h) / 2;
 	destRect.w = movieImage->w;
 	destRect.h = movieImage->h;
 	SDL_RenderCopy(render, movieTexture, nullptr, &destRect);
-	destRect.x += destRect.w + 10;
-	destRect.y = (SC_SCREEN_HEIGHT - mainLabelSurface->h) / 2;
-	destRect.w = mainLabelSurface->w;
-	destRect.h = mainLabelSurface->h;
-	SDL_RenderCopy(render, mainLabelTexture, nullptr, &destRect);
+	text.Render(render, destRect.x + destRect.w + 10, (SC_SCREEN_HEIGHT - text.Height()) / 2);
 	hands.Render(render, 20, SC_SCREEN_HEIGHT - hands.GetHeight() - 20);
 }
 
@@ -104,4 +86,9 @@ void MovieModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, M
 	}
 	if (playSound)
 		Mix_PlayChannel(1, ResourcesManager::Get()->EnterSound, 0);
+}
+
+void MovieModule::OnAnimationEnded()
+{
+
 }
