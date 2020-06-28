@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Character.h"
+#include "Movie.h"
 
 namespace sc
 {
@@ -12,6 +13,8 @@ namespace sc
 	public:
 		GameState();
 		std::vector<Character> Characters;
+		std::vector<Movie> Movies;
 		int SelectedCharacterIndex;
+		int CurrentMovieIndex;
 	};
 }

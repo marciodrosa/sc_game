@@ -12,6 +12,10 @@ ImagesProvider::ImagesProvider()
 
 ImagesProvider::~ImagesProvider()
 {
+	for (pair<MovieId, SDL_Surface*> element : moviesImages)
+	{
+		SDL_FreeSurface(element.second);
+	}
 	for (pair<CharacterId, SDL_Surface*> element : charactersImages)
 	{
 		SDL_FreeSurface(element.second);
@@ -40,6 +44,12 @@ void ImagesProvider::Release()
 
 void ImagesProvider::LoadImages()
 {
+	moviesImages[MovieId::DESTACAMENTO_BLOOD] = IMG_Load("Images/DestacamentoBlood.png");
+	moviesImages[MovieId::UM_PEQUENO_FAVOR] = IMG_Load("Images/UmPequenoFavor.png");
+	moviesImages[MovieId::NASCIDO_EM_4_DE_JULHO] = IMG_Load("Images/NascidoEm4DeJulho.png");
+	moviesImages[MovieId::PERSONAL_SHOPPER] = IMG_Load("Images/PersonalShopper.png");
+	moviesImages[MovieId::PSICOPATA_AMERICANO] = IMG_Load("Images/PsicopataAmericano.png");
+	moviesImages[MovieId::EMBRIAGADO_DE_AMOR] = IMG_Load("Images/EmbriagadoDeAmor.png");
 	charactersImages[CharacterId::FELIPE] = IMG_Load("Images/Felipe.png");
 	charactersImages[CharacterId::JULIA] = IMG_Load("Images/Julia.png");
 	charactersImages[CharacterId::MARCIO] = IMG_Load("Images/Marcio.png");
@@ -51,6 +61,11 @@ void ImagesProvider::LoadImages()
 	smallCharactersImages[CharacterId::RAFA] = IMG_Load("Images/RafaSmall.png");
 	smallCharactersImages[CharacterId::GABI] = IMG_Load("Images/GabiSmall.png");
 	characterCursorImage = IMG_Load("Images/CharacterCursor.png");
+}
+
+SDL_Surface* ImagesProvider::GetMovieImage(MovieId id)
+{
+	return moviesImages[id];
 }
 
 SDL_Surface* ImagesProvider::GetCharacterImage(CharacterId id)

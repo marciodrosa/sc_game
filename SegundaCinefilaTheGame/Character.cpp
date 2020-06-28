@@ -10,31 +10,31 @@ vector<Character> Character::GetCharacters()
 	Character felipe;
 	felipe.Id = CharacterId::FELIPE;
 	felipe.Name = "Felipe";
-	felipe.EndingLine = "Winners don't lose!";
+	felipe.EndingLine = "Nenhum filme de espadinha, aprovei!";
 	result.push_back(felipe);
 
 	Character julia;
 	julia.Id = CharacterId::JULIA;
 	julia.Name = "Julia";
-	julia.EndingLine = "Winners don't lose!";
+	julia.EndingLine = "Senti falta de algum filme com o Redmayne, mas bacana fora isso.";
 	result.push_back(julia);
 
 	Character marcio;
 	marcio.Id = CharacterId::MARCIO;
 	marcio.Name = "Marcio";
-	marcio.EndingLine = "Winners don't lose!";
+	marcio.EndingLine = "Vencedores não perdem!";
 	result.push_back(marcio);
 
 	Character rafa;
 	rafa.Id = CharacterId::RAFA;
 	rafa.Name = "Rafa";
-	rafa.EndingLine = "Winners don't lose!";
+	rafa.EndingLine = "Agora bora jogar de novo para listar os filmes no Letterboxd.";
 	result.push_back(rafa);
 
 	Character gabi;
 	gabi.Id = CharacterId::GABI;
 	gabi.Name = "Gabi";
-	gabi.EndingLine = "Winners don't lose!";
+	gabi.EndingLine = "Só filmes bons? Não é a Segunda Cinéfila que eu conheço...";
 	result.push_back(gabi);
 
 	return result;

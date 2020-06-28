@@ -138,6 +138,8 @@
     <ClCompile Include="ImagesProvider.cpp" />
     <ClCompile Include="IntroModule.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Movie.cpp" />
+    <ClCompile Include="MovieModule.cpp" />
     <ClCompile Include="TitleModule.cpp" />
     <ClCompile Include="ModuleResult.cpp" />
   </ItemGroup>
@@ -151,6 +153,8 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="ImagesProvider.h" />
     <ClInclude Include="IntroModule.h" />
+    <ClInclude Include="Movie.h" />
+    <ClInclude Include="MovieModule.h" />
     <ClInclude Include="TitleModule.h" />
     <ClInclude Include="ModuleResult.h" />
   </ItemGroup>
