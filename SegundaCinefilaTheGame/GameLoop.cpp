@@ -42,6 +42,7 @@ void GameLoop::Run()
 	while (running)
 	{
 		unsigned int timeStart = SDL_GetTicks();
+		SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
 		SDL_RenderClear(render);
 		PoolEvents();
 		if (gameModule != nullptr)

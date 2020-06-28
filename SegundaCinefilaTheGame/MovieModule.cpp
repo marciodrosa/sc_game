@@ -47,6 +47,8 @@ void MovieModule::Start(GameState& state)
 void MovieModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
 {
 	Movie& movie = state.Movies[state.CurrentMovieIndex];
+	if (movie.IsExtra)
+		blinkingBackground.Render(render);
 	SDL_Surface* movieImage = ImagesProvider::Get()->GetMovieImage(movie.Id);
 	if (movieTexture == nullptr)
 		movieTexture = SDL_CreateTextureFromSurface(render, movieImage);

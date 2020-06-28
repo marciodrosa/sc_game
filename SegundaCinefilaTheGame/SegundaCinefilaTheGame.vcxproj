@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlinkingBackground.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterSelectionIcon.cpp" />
     <ClCompile Include="CharacterSelectionModule.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="ModuleResult.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlinkingBackground.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterSelectionIcon.h" />
     <ClInclude Include="CharacterSelectionModule.h" />

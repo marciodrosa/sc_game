@@ -39,6 +39,7 @@ void ExtraModule::Start(GameState& state)
 
 void ExtraModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
 {
+	blinkingBackground.Render(render);
 	if (mainLabelTexture == nullptr)
 		mainLabelTexture = SDL_CreateTextureFromSurface(render, mainLabelSurface);
 	SDL_Rect destRect;
