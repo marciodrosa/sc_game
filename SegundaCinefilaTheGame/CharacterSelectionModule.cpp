@@ -13,6 +13,7 @@ CharacterSelectionModule::CharacterSelectionModule()
 	mainLabelSurface = nullptr;
 	mainLabelTexture = nullptr;
 	font = nullptr;
+	selectionFinished = false;
 }
 
 CharacterSelectionModule::~CharacterSelectionModule()
@@ -64,6 +65,8 @@ void CharacterSelectionModule::Update(GameState& state, SDL_Renderer* render, Mo
 	}
 	DrawCharacterName(state, render);
 	hands.Render(render, (SC_SCREEN_WIDTH - hands.GetWidth()) / 2, SC_SCREEN_HEIGHT - hands.GetHeight());
+	if (selectionFinished)
+		result.NextGameModule = new IntroModule;
 }
 
 void CharacterSelectionModule::DrawCharacterName(GameState& state, SDL_Renderer* render)
@@ -94,7 +97,8 @@ void CharacterSelectionModule::HandleInput(GameState& state, SDL_KeyboardEvent& 
 {
 	if (inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
 	{
-		result.NextGameModule = new IntroModule;
+		result.DisableInput = true;
+		characterIcons[state.SelectedCharacterIndex]->Blink(this);
 		Mix_PlayChannel(1, ResourcesManager::Get()->SelectSound, 0);
 	}
 	else if (inputEvent.keysym.sym == SDLK_LEFT)
@@ -111,4 +115,9 @@ void CharacterSelectionModule::HandleInput(GameState& state, SDL_KeyboardEvent& 
 			state.SelectedCharacterIndex = 0;
 		Mix_PlayChannel(1, ResourcesManager::Get()->NavigateSound, 0);
 	}
+}
+
+void CharacterSelectionModule::OnAnimationEnded()
+{
+	selectionFinished = true;
 }

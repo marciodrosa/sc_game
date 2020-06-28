@@ -149,6 +149,7 @@
     <ClCompile Include="ModuleResult.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationListener.h" />
     <ClInclude Include="BlinkingBackground.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterSelectionIcon.h" />

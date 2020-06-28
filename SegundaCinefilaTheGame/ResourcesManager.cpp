@@ -79,7 +79,7 @@ void ResourcesManager::LoadResources()
 	HandLeftImage = IMG_Load("Images/HandLeft.png");
 	HandOkImage = IMG_Load("Images/HandOk.png");
 	NavigateSound = Mix_LoadWAV("Audio/Navigate1.wav");
-	SelectSound = Mix_LoadWAV("Audio/Selected.wav");
+	SelectSound = Mix_LoadWAV("Audio/Select.wav");
 	EnterSound = Mix_LoadWAV("Audio/Enter.wav");
 	StartSound = Mix_LoadWAV("Audio/Start.wav");
 }

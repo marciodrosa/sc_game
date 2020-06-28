@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "Character.h"
 #include "GameState.h"
+#include "AnimationListener.h"
 
 namespace sc
 {
@@ -13,10 +14,14 @@ namespace sc
 		CharacterSelectionIcon(Character* character);
 		virtual ~CharacterSelectionIcon();
 		void Render(GameState& state, SDL_Renderer* render, int x, int y);
+		void Blink(AnimationListener* listener);
 
 	private:
 		SDL_Texture* characterTexture;
 		SDL_Texture* selectionTexture;
 		Character* character;
+		AnimationListener* blinkAnimationListener;
+		bool blinking;
+		int blinksCount;
 	};
 }

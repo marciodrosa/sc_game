@@ -11,5 +11,6 @@ namespace sc
 		ModuleResult();
 		GameModule* NextGameModule;
 		bool FinishGame;
+		bool DisableInput;
 	};
 }

@@ -6,4 +6,5 @@ ModuleResult::ModuleResult()
 {
 	NextGameModule = nullptr;
 	FinishGame = false;
+	DisableInput = false;
 }

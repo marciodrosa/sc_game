@@ -8,6 +8,9 @@ CharacterSelectionIcon::CharacterSelectionIcon(Character* character)
 	this->character = character;
 	this->characterTexture = nullptr;
 	this->selectionTexture = nullptr;
+	this->blinking = false;
+	this->blinksCount = 0;
+	this->blinkAnimationListener = nullptr;
 }
 
 CharacterSelectionIcon::~CharacterSelectionIcon()
@@ -32,6 +35,25 @@ void CharacterSelectionIcon::Render(GameState& state, SDL_Renderer* render, int 
 	bool isSelected = state.Characters[state.SelectedCharacterIndex].Id == this->character->Id;
 	if (isSelected)
 	{
-		SDL_RenderCopy(render, selectionTexture, nullptr, &destRect);
+		bool renderSelection = !blinking || (blinksCount % 2) == 0;
+		if (renderSelection)
+			SDL_RenderCopy(render, selectionTexture, nullptr, &destRect);
 	}
+	if (blinking)
+	{
+		blinksCount++;
+		if (blinksCount > 30)
+		{
+			blinking = false;
+			if (blinkAnimationListener != nullptr)
+				blinkAnimationListener->OnAnimationEnded();
+		}
+	}
+}
+
+void CharacterSelectionIcon::Blink(AnimationListener* listener)
+{
+	blinking = true;
+	blinkAnimationListener = listener;
+	blinksCount = 0;
 }

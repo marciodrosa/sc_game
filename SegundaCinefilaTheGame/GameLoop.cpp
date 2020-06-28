@@ -14,6 +14,7 @@ GameLoop::GameLoop(GameState& state)
 	this->gameState = &state;
 	this->gameModule = nullptr;
 	this->running = false;
+	this->moduleInputEnabled = true;
 }
 
 GameLoop::~GameLoop()
@@ -63,6 +64,7 @@ void GameLoop::SetModule(GameModule* gameModule)
 			delete this->gameModule;
 		}
 		this->gameModule = gameModule;
+		moduleInputEnabled = true;
 		if (this->gameModule != nullptr)
 			this->gameModule->Start(*gameState);
 	}
@@ -70,6 +72,8 @@ void GameLoop::SetModule(GameModule* gameModule)
 
 void GameLoop::HandleModuleResult(ModuleResult& moduleResult)
 {
+	if (moduleResult.DisableInput)
+		moduleInputEnabled = false;
 	if (moduleResult.NextGameModule != nullptr)
 		SetModule(moduleResult.NextGameModule);
 	if (moduleResult.FinishGame)
@@ -85,7 +89,7 @@ void GameLoop::PoolEvents()
 			running = false;
 		else if (event.type == SDL_KEYDOWN)
 		{
-			if (gameModule != nullptr)
+			if (gameModule != nullptr && moduleInputEnabled)
 			{
 				ModuleResult moduleResult;
 				gameModule->HandleInput(*gameState, event.key, moduleResult);

@@ -23,6 +23,7 @@ namespace sc
 		SDL_Renderer* render;
 		bool running;
 		bool sdlInitiated;
+		bool moduleInputEnabled;
 		void HandleModuleResult(ModuleResult& moduleResult);
 		void PoolEvents();
 		void InitSDLAndResources();
