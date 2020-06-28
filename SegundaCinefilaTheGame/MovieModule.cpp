@@ -3,6 +3,7 @@
 #include "ImagesProvider.h"
 #include "EndingModule.h"
 #include "ExtraModule.h"
+#include "MusicPlayer.h"
 #include <SDL_image.h>
 
 using namespace std;
@@ -37,6 +38,10 @@ void MovieModule::Start(GameState& state)
 	hands.Left = state.CurrentMovieIndex > 0;
 	hands.Right = state.CurrentMovieIndex < state.Movies.size() - 1;
 	hands.Ok = state.CurrentMovieIndex == state.Movies.size() - 1;
+	if (movie.IsExtra)
+		MusicPlayer::Get()->PlayExtraMusic();
+	else
+		MusicPlayer::Get()->PlayGameMusic();
 }
 
 void MovieModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)

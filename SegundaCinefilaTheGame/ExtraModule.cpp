@@ -1,6 +1,7 @@
 #include "ExtraModule.h"
 #include "Constants.h"
 #include "MovieModule.h"
+#include "MusicPlayer.h"
 #include <SDL_image.h>
 #include <sstream>
 
@@ -33,6 +34,7 @@ void ExtraModule::Start(GameState& state)
 	hands.Left = true;
 	hands.Right = true;
 	hands.Ok = true;
+	MusicPlayer::Get()->PlayExtraMusic();
 }
 
 void ExtraModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)

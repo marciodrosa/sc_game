@@ -1,6 +1,7 @@
 #include "TitleModule.h"
 #include "CharacterSelectionModule.h"
 #include "Constants.h"
+#include "MusicPlayer.h"
 #include <SDL_image.h>
 
 using namespace sc;
@@ -30,6 +31,7 @@ void TitleModule::Start(GameState& state)
 	whiteColor.b = 255;
 	whiteColor.a = 255;
 	mainLabelSurface = TTF_RenderText_Blended_Wrapped(font, "Comandos: teclas para esquerda, direita e Enter", whiteColor, 300);
+	MusicPlayer::Get()->PlayTitleMusic();
 }
 
 void TitleModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)

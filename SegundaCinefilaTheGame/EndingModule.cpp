@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "ImagesProvider.h"
 #include "MovieModule.h"
+#include "MusicPlayer.h"
 #include <SDL_image.h>
 #include <sstream>
 
@@ -50,6 +51,7 @@ void EndingModule::Start(GameState& state)
 	theEndLabelSurface = TTF_RenderText_Blended(font, "FIM", whiteColor);
 	hands.Left = true;
 	hands.Ok = true;
+	MusicPlayer::Get()->PlayTitleMusic();
 }
 
 void EndingModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)

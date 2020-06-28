@@ -1,7 +1,9 @@
 #include "GameLoop.h"
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include "ImagesProvider.h"
+#include "MusicPlayer.h"
 #include "Constants.h"
 
 using namespace sc;
@@ -11,18 +13,24 @@ GameLoop::GameLoop(GameState& state)
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
 	TTF_Init();
+	Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
+	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
 	this->gameState = &state;
 	this->gameModule = nullptr;
 	this->running = false;
+	ImagesProvider::Get()->LoadImages();
+	MusicPlayer::Get()->LoadMusics();
 }
 
 GameLoop::~GameLoop()
 {
 	SetModule(nullptr);
+	ImagesProvider::Release();
+	MusicPlayer::Release();
 	IMG_Quit();
 	TTF_Quit();
+	Mix_Quit();
 	SDL_Quit();
-	ImagesProvider::Release();
 }
 
 void GameLoop::Run()
@@ -30,7 +38,6 @@ void GameLoop::Run()
 	SDL_Window* window = SDL_CreateWindow("Segunda Cinefila", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SC_SCREEN_WIDTH, SC_SCREEN_HEIGHT, 0); // SDL_WINDOW_FULLSCREEN
 	SDL_ShowCursor(0);
 	render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	ImagesProvider::Get()->LoadImages();
 	running = true;
 	while (running)
 	{

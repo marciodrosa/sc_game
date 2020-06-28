@@ -1,6 +1,7 @@
 #include "IntroModule.h"
 #include "Constants.h"
 #include "MovieModule.h"
+#include "MusicPlayer.h"
 #include <SDL_image.h>
 #include <sstream>
 
@@ -37,6 +38,7 @@ void IntroModule::Start(GameState& state)
 		<< "com sabedoria.";
 	mainLabelSurface = TTF_RenderText_Blended_Wrapped(font, text.str().c_str(), whiteColor, 300);
 	hands.Ok = true;
+	MusicPlayer::Get()->PlayGameMusic();
 }
 
 void IntroModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)

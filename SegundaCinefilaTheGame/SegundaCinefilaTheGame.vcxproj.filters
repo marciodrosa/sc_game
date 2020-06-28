@@ -60,6 +60,9 @@
     <ClCompile Include="Hands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MusicPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLoop.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Hands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
