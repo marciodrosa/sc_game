@@ -48,6 +48,8 @@ void EndingModule::Start(GameState& state)
 	mainLabelSurface = TTF_RenderText_Blended_Wrapped(font, endingLabel.str().c_str(), whiteColor, SC_SCREEN_WIDTH - 20);
 	characterLabelSurface = TTF_RenderText_Blended_Wrapped(font, characterLabel.str().c_str(), whiteColor, SC_SCREEN_WIDTH - 20);
 	theEndLabelSurface = TTF_RenderText_Blended(font, "FIM", whiteColor);
+	hands.Left = true;
+	hands.Ok = true;
 }
 
 void EndingModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
@@ -83,6 +85,7 @@ void EndingModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& 
 	destRect.w = theEndLabelSurface->w;
 	destRect.h = theEndLabelSurface->h;
 	SDL_RenderCopy(render, theEndLabelTexture, nullptr, &destRect);
+	hands.Render(render, (SC_SCREEN_WIDTH - hands.GetWidth()) -10, SC_SCREEN_HEIGHT - hands.GetHeight());
 }
 
 void EndingModule::Finish(GameState& state)

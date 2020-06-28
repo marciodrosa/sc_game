@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameModule.h"
+#include "Hands.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <vector>
@@ -23,5 +24,6 @@ namespace sc
 		SDL_Surface* mainLabelSurface;
 		SDL_Texture* mainLabelTexture;
 		TTF_Font* font;
+		Hands hands;
 	};
 }

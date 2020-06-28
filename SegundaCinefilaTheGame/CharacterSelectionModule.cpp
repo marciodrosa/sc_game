@@ -37,6 +37,9 @@ void CharacterSelectionModule::Start(GameState& state)
 	{
 		characterIcons.push_back(new CharacterSelectionIcon(&character));
 	}
+	hands.Left = true;
+	hands.Right = true;
+	hands.Ok = true;
 }
 
 void CharacterSelectionModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
@@ -58,6 +61,7 @@ void CharacterSelectionModule::Update(GameState& state, SDL_Renderer* render, Mo
 		x += 42;
 	}
 	DrawCharacterName(state, render);
+	hands.Render(render, (SC_SCREEN_WIDTH - hands.GetWidth()) / 2, SC_SCREEN_HEIGHT - hands.GetHeight());
 }
 
 void CharacterSelectionModule::DrawCharacterName(GameState& state, SDL_Renderer* render)

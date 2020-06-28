@@ -2,6 +2,7 @@
 
 #include "GameModule.h"
 #include "CharacterSelectionIcon.h"
+#include "Hands.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <vector>
@@ -25,5 +26,6 @@ namespace sc
 		SDL_Texture* mainLabelTexture;
 		TTF_Font* font;
 		std::vector<CharacterSelectionIcon*> characterIcons;
+		Hands hands;
 	};
 }

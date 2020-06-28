@@ -137,6 +137,7 @@
     <ClCompile Include="ExtraModule.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Hands.cpp" />
     <ClCompile Include="ImagesProvider.cpp" />
     <ClCompile Include="IntroModule.cpp" />
     <ClCompile Include="main.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameModule.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Hands.h" />
     <ClInclude Include="ImagesProvider.h" />
     <ClInclude Include="IntroModule.h" />
     <ClInclude Include="Movie.h" />

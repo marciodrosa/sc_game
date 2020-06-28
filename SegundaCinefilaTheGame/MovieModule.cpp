@@ -34,6 +34,9 @@ void MovieModule::Start(GameState& state)
 	whiteColor.a = 255;
 	Movie& movie = state.Movies[state.CurrentMovieIndex];
 	mainLabelSurface = TTF_RenderText_Blended_Wrapped(font, movie.GetFullDescription().c_str(), whiteColor, 160);
+	hands.Left = state.CurrentMovieIndex > 0;
+	hands.Right = state.CurrentMovieIndex < state.Movies.size() - 1;
+	hands.Ok = state.CurrentMovieIndex == state.Movies.size() - 1;
 }
 
 void MovieModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
@@ -55,6 +58,7 @@ void MovieModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 	destRect.w = mainLabelSurface->w;
 	destRect.h = mainLabelSurface->h;
 	SDL_RenderCopy(render, mainLabelTexture, nullptr, &destRect);
+	hands.Render(render, 20, SC_SCREEN_HEIGHT - hands.GetHeight() - 20);
 }
 
 void MovieModule::Finish(GameState& state)

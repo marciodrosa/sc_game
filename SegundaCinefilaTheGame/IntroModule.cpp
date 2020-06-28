@@ -36,6 +36,7 @@ void IntroModule::Start(GameState& state)
 		<< "Consulte os filmes a seguir e vote "
 		<< "com sabedoria.";
 	mainLabelSurface = TTF_RenderText_Blended_Wrapped(font, text.str().c_str(), whiteColor, 300);
+	hands.Ok = true;
 }
 
 void IntroModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
@@ -48,6 +49,7 @@ void IntroModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 	destRect.w = mainLabelSurface->w;
 	destRect.h = mainLabelSurface->h;
 	SDL_RenderCopy(render, mainLabelTexture, nullptr, &destRect);
+	hands.Render(render, (SC_SCREEN_WIDTH - hands.GetWidth()) / 2, SC_SCREEN_HEIGHT - hands.GetHeight());
 }
 
 void IntroModule::Finish(GameState& state)

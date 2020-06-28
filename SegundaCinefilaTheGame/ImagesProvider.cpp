@@ -8,6 +8,10 @@ ImagesProvider* ImagesProvider::singleton = nullptr;
 
 ImagesProvider::ImagesProvider()
 {
+	characterCursorImage = nullptr;
+	handRightImage = nullptr;
+	handLeftImage = nullptr;
+	handOkImage = nullptr;
 }
 
 ImagesProvider::~ImagesProvider()
@@ -24,6 +28,10 @@ ImagesProvider::~ImagesProvider()
 	{
 		SDL_FreeSurface(element.second);
 	}
+	SDL_FreeSurface(characterCursorImage);
+	SDL_FreeSurface(handRightImage);
+	SDL_FreeSurface(handLeftImage);
+	SDL_FreeSurface(handOkImage);
 }
 
 ImagesProvider* ImagesProvider::Get()
@@ -61,6 +69,9 @@ void ImagesProvider::LoadImages()
 	smallCharactersImages[CharacterId::RAFA] = IMG_Load("Images/RafaSmall.png");
 	smallCharactersImages[CharacterId::GABI] = IMG_Load("Images/GabiSmall.png");
 	characterCursorImage = IMG_Load("Images/CharacterCursor.png");
+	handRightImage = IMG_Load("Images/HandRight.png");
+	handLeftImage = IMG_Load("Images/HandLeft.png");
+	handOkImage = IMG_Load("Images/HandOk.png");
 }
 
 SDL_Surface* ImagesProvider::GetMovieImage(MovieId id)
@@ -81,4 +92,19 @@ SDL_Surface* ImagesProvider::GetCharacterSmallImage(CharacterId id)
 SDL_Surface* ImagesProvider::GetCharacterCursorImage()
 {
 	return characterCursorImage;
+}
+
+SDL_Surface* ImagesProvider::GetHandRightImage()
+{
+	return handRightImage;
+}
+
+SDL_Surface* ImagesProvider::GetHandLeftImage()
+{
+	return handLeftImage;
+}
+
+SDL_Surface* ImagesProvider::GetHandOkImage()
+{
+	return handOkImage;
 }

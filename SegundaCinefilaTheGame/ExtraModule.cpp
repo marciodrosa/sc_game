@@ -30,6 +30,9 @@ void ExtraModule::Start(GameState& state)
 	whiteColor.b = 255;
 	whiteColor.a = 255;
 	mainLabelSurface = TTF_RenderText_Blended_Wrapped(font, "EXTRA x1", whiteColor, 300);
+	hands.Left = true;
+	hands.Right = true;
+	hands.Ok = true;
 }
 
 void ExtraModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
@@ -42,6 +45,7 @@ void ExtraModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 	destRect.w = mainLabelSurface->w;
 	destRect.h = mainLabelSurface->h;
 	SDL_RenderCopy(render, mainLabelTexture, nullptr, &destRect);
+	hands.Render(render, (SC_SCREEN_WIDTH - hands.GetWidth()) / 2, SC_SCREEN_HEIGHT - hands.GetHeight());
 }
 
 void ExtraModule::Finish(GameState& state)
