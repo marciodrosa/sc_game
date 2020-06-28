@@ -57,35 +57,36 @@ void MovieModule::Finish(GameState& state)
 
 void MovieModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result)
 {
-	bool playSound = false;
-	if (inputEvent.keysym.sym == SDLK_RIGHT || inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
+	Mix_PlayChannel(1, ResourcesManager::Get()->EnterSound, 0);
+	if (text.IsAnimating())
+		text.ForceFinishAnimation();
+	else
 	{
-		state.CurrentMovieIndex++;
-		if (state.CurrentMovieIndex >= state.Movies.size())
+		if (inputEvent.keysym.sym == SDLK_RIGHT || inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
 		{
-			state.CurrentMovieIndex = state.Movies.size() - 1;
-			result.NextGameModule = new EndingModule;
+			state.CurrentMovieIndex++;
+			if (state.CurrentMovieIndex >= state.Movies.size())
+			{
+				state.CurrentMovieIndex = state.Movies.size() - 1;
+				result.NextGameModule = new EndingModule;
+			}
+			else
+			{
+				if (state.Movies[state.CurrentMovieIndex].IsExtra)
+					result.NextGameModule = new ExtraModule;
+				else
+					result.NextGameModule = new MovieModule;
+			}
 		}
-		else
+		else if (inputEvent.keysym.sym == SDLK_LEFT)
 		{
-			if (state.Movies[state.CurrentMovieIndex].IsExtra)
-				result.NextGameModule = new ExtraModule;
+			state.CurrentMovieIndex--;
+			if (state.CurrentMovieIndex < 0)
+				state.CurrentMovieIndex = 0;
 			else
 				result.NextGameModule = new MovieModule;
 		}
-		playSound = true;
 	}
-	else if (inputEvent.keysym.sym == SDLK_LEFT)
-	{
-		state.CurrentMovieIndex--;
-		if (state.CurrentMovieIndex < 0)
-			state.CurrentMovieIndex = 0;
-		else
-			result.NextGameModule = new MovieModule;
-		playSound = true;
-	}
-	if (playSound)
-		Mix_PlayChannel(1, ResourcesManager::Get()->EnterSound, 0);
 }
 
 void MovieModule::OnAnimationEnded()

@@ -60,9 +60,9 @@ void AnimatedText::Render(SDL_Renderer* render, int x, int y)
 {
 	if (targetText != "")
 	{
-		bool wasAnimating = IsAnimating();
-		if (wasAnimating)
+		if (animated)
 		{
+			bool wasAnimating = IsAnimating();
 			AnimateText();
 			SDL_FreeSurface(animTextSurface);
 			SDL_DestroyTexture(textTexture);
@@ -74,6 +74,8 @@ void AnimatedText::Render(SDL_Renderer* render, int x, int y)
 			destRect.w = animTextSurface->w;
 			destRect.h = animTextSurface->h;
 			SDL_RenderCopy(render, textTexture, nullptr, &destRect);
+			if (wasAnimating && !IsAnimating() && animationListener != nullptr)
+				animationListener->OnAnimationEnded();
 		}
 		else
 		{
@@ -86,8 +88,6 @@ void AnimatedText::Render(SDL_Renderer* render, int x, int y)
 			destRect.h = textSurface->h;
 			SDL_RenderCopy(render, textTexture, nullptr, &destRect);
 		}
-		if (wasAnimating && !IsAnimating() && animationListener != nullptr)
-			animationListener->OnAnimationEnded();
 	}
 }
 
