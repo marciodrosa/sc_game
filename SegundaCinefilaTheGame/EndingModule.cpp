@@ -26,9 +26,9 @@ void EndingModule::Start(GameState& state)
 	stringstream characterLabel;
 	endingLabel << "E assim, com muita sabedoria, " << character.Name << " fez a escolha de seus filmes favoritos para a SEGUNDA CINÉFILA vindoura.";
 	characterLabel << '"' << character.EndingLine << '"';
-	mainLabelText.SetText(endingLabel.str(), 11, SC_SCREEN_WIDTH - 20, 1, false);
-	characterLabelText.SetText(characterLabel.str(), 11, SC_SCREEN_WIDTH - 20, 1, false);
-	theEndLabelText.SetText("FIM", 11, 0, 1, false);
+	mainLabelText.SetText(endingLabel.str(), 11, SC_SCREEN_WIDTH - 20);
+	characterLabelText.SetText(characterLabel.str(), 11, SC_SCREEN_WIDTH - 20);
+	theEndLabelText.SetText("FIM", 11, 0);
 	hands.Left = true;
 	hands.Ok = true;
 	MusicPlayer::Get()->PlayTitleMusic();

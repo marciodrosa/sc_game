@@ -26,7 +26,7 @@ void MovieModule::Start(GameState& state)
 	hands.Left = state.CurrentMovieIndex > 0;
 	hands.Right = state.CurrentMovieIndex < state.Movies.size() - 1;
 	hands.Ok = state.CurrentMovieIndex == state.Movies.size() - 1;
-	text.SetText(movie.GetFullDescription(), 11, 160, 1, true, this);
+	text.SetText(movie.GetFullDescription(), 11, 160, true, 1, this);
 	if (movie.IsExtra)
 		MusicPlayer::Get()->PlayExtraMusic();
 	else

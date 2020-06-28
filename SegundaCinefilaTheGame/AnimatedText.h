@@ -13,7 +13,7 @@ namespace sc
 	public:
 		AnimatedText();
 		virtual ~AnimatedText();
-		void SetText(std::string text, int fontSize, int width, int animationSpeed, bool animated, AnimationListener* animationListener = nullptr);
+		void SetText(std::string text, int fontSize, int width = 0, bool animated = false, int animationSpeed = 1, AnimationListener* animationListener = nullptr);
 		void ForceFinishAnimation();
 		bool IsAnimating();
 		int GetWidth();

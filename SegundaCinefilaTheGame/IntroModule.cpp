@@ -26,7 +26,7 @@ void IntroModule::Start(GameState& state)
 		<< "o filme da semana da SEGUNDA CINÉFILA." << endl << endl
 		<< "Consulte os filmes a seguir e vote "
 		<< "com sabedoria.";
-	text.SetText(ss.str(), 14, 300, 1, false);
+	text.SetText(ss.str(), 14, 300);
 	hands.Ok = true;
 	MusicPlayer::Get()->PlayGameMusic();
 }

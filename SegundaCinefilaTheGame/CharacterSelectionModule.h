@@ -4,6 +4,7 @@
 #include "CharacterSelectionIcon.h"
 #include "AnimationListener.h"
 #include "Hands.h"
+#include "AnimatedText.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <vector>
@@ -24,9 +25,8 @@ namespace sc
 
 	private:
 		void DrawCharacterName(GameState& state, SDL_Renderer* render);
-		SDL_Surface* mainLabelSurface;
-		SDL_Texture* mainLabelTexture;
-		TTF_Font* font;
+		AnimatedText mainLabelText;
+		AnimatedText characterNameText;
 		std::vector<CharacterSelectionIcon*> characterIcons;
 		Hands hands;
 		bool selectionFinished;

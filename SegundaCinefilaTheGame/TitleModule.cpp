@@ -23,7 +23,7 @@ TitleModule::~TitleModule()
 void TitleModule::Start(GameState& state)
 {
 	logoImage = IMG_Load("Images/Logo.png");
-	text.SetText("Comandos: teclas para esquerda, direita e Enter", 11, 300, 1, false, nullptr);
+	text.SetText("Comandos: teclas para esquerda, direita e Enter", 11, 300);
 	MusicPlayer::Get()->PlayTitleMusic();
 }
 
