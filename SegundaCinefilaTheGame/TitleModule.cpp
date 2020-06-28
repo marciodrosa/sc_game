@@ -2,7 +2,9 @@
 #include "CharacterSelectionModule.h"
 #include "Constants.h"
 #include "MusicPlayer.h"
+#include "ResourcesManager.h"
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 
 using namespace sc;
 
@@ -56,5 +58,8 @@ void TitleModule::Finish(GameState& state)
 void TitleModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result)
 {
 	if (inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
+	{
+		Mix_PlayChannel(1, ResourcesManager::Get()->StartSound, 0);
 		result.NextGameModule = new CharacterSelectionModule;
+	}
 }

@@ -1,7 +1,9 @@
 #include "CharacterSelectionModule.h"
 #include "IntroModule.h"
 #include "Constants.h"
+#include "ResourcesManager.h"
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 
 using namespace std;
 using namespace sc;
@@ -91,17 +93,22 @@ void CharacterSelectionModule::Finish(GameState& state)
 void CharacterSelectionModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result)
 {
 	if (inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
+	{
 		result.NextGameModule = new IntroModule;
+		Mix_PlayChannel(1, ResourcesManager::Get()->SelectSound, 0);
+	}
 	else if (inputEvent.keysym.sym == SDLK_LEFT)
 	{
 		state.SelectedCharacterIndex--;
 		if (state.SelectedCharacterIndex < 0)
 			state.SelectedCharacterIndex = state.Characters.size() - 1;
+		Mix_PlayChannel(1, ResourcesManager::Get()->NavigateSound, 0);
 	}
 	else if (inputEvent.keysym.sym == SDLK_RIGHT)
 	{
 		state.SelectedCharacterIndex++;
 		if (state.SelectedCharacterIndex >= state.Characters.size())
 			state.SelectedCharacterIndex = 0;
+		Mix_PlayChannel(1, ResourcesManager::Get()->NavigateSound, 0);
 	}
 }

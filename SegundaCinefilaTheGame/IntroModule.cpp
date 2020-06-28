@@ -2,7 +2,9 @@
 #include "Constants.h"
 #include "MovieModule.h"
 #include "MusicPlayer.h"
+#include "ResourcesManager.h"
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <sstream>
 
 using namespace std;
@@ -61,5 +63,8 @@ void IntroModule::Finish(GameState& state)
 void IntroModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result)
 {
 	if (inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
+	{
 		result.NextGameModule = new MovieModule;
+		Mix_PlayChannel(1, ResourcesManager::Get()->EnterSound, 0);
+	}
 }

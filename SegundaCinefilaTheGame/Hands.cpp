@@ -1,5 +1,5 @@
 #include "Hands.h"
-#include "ImagesProvider.h"
+#include "ResourcesManager.h"
 
 using namespace sc;
 
@@ -40,11 +40,11 @@ int Hands::GetHeight()
 void Hands::Render(SDL_Renderer* render, int x, int y)
 {
 	if (rightTexture == nullptr && Right)
-		rightTexture = SDL_CreateTextureFromSurface(render, ImagesProvider::Get()->GetHandRightImage());
+		rightTexture = SDL_CreateTextureFromSurface(render, ResourcesManager::Get()->HandRightImage);
 	if (leftTexture == nullptr && Left)
-		leftTexture = SDL_CreateTextureFromSurface(render, ImagesProvider::Get()->GetHandLeftImage());
+		leftTexture = SDL_CreateTextureFromSurface(render, ResourcesManager::Get()->HandLeftImage);
 	if (okTexture == nullptr && Ok)
-		okTexture = SDL_CreateTextureFromSurface(render, ImagesProvider::Get()->GetHandOkImage());
+		okTexture = SDL_CreateTextureFromSurface(render, ResourcesManager::Get()->HandOkImage);
 	SDL_Rect destRect;
 	destRect.x = x + 2;
 	destRect.y = y + 2;

@@ -22,7 +22,10 @@ namespace sc
 		GameModule* gameModule;
 		SDL_Renderer* render;
 		bool running;
+		bool sdlInitiated;
 		void HandleModuleResult(ModuleResult& moduleResult);
 		void PoolEvents();
+		void InitSDLAndResources();
+		void QuitSDLAndResources();
 	};
 }

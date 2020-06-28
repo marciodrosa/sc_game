@@ -1,10 +1,11 @@
 #include "MovieModule.h"
 #include "Constants.h"
-#include "ImagesProvider.h"
+#include "ResourcesManager.h"
 #include "EndingModule.h"
 #include "ExtraModule.h"
 #include "MusicPlayer.h"
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 
 using namespace std;
 using namespace sc;
@@ -49,7 +50,7 @@ void MovieModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 	Movie& movie = state.Movies[state.CurrentMovieIndex];
 	if (movie.IsExtra)
 		blinkingBackground.Render(render);
-	SDL_Surface* movieImage = ImagesProvider::Get()->GetMovieImage(movie.Id);
+	SDL_Surface* movieImage = ResourcesManager::Get()->GetMovieImage(movie.Id);
 	if (movieTexture == nullptr)
 		movieTexture = SDL_CreateTextureFromSurface(render, movieImage);
 	if (mainLabelTexture == nullptr)
@@ -74,6 +75,7 @@ void MovieModule::Finish(GameState& state)
 
 void MovieModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, ModuleResult& result)
 {
+	bool playSound = false;
 	if (inputEvent.keysym.sym == SDLK_RIGHT || inputEvent.keysym.sym == SDLK_RETURN || inputEvent.keysym.sym == SDLK_KP_ENTER)
 	{
 		state.CurrentMovieIndex++;
@@ -89,6 +91,7 @@ void MovieModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, M
 			else
 				result.NextGameModule = new MovieModule;
 		}
+		playSound = true;
 	}
 	else if (inputEvent.keysym.sym == SDLK_LEFT)
 	{
@@ -97,5 +100,8 @@ void MovieModule::HandleInput(GameState& state, SDL_KeyboardEvent& inputEvent, M
 			state.CurrentMovieIndex = 0;
 		else
 			result.NextGameModule = new MovieModule;
+		playSound = true;
 	}
+	if (playSound)
+		Mix_PlayChannel(1, ResourcesManager::Get()->EnterSound, 0);
 }

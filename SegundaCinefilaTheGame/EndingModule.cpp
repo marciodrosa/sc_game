@@ -1,6 +1,6 @@
 #include "EndingModule.h"
 #include "Constants.h"
-#include "ImagesProvider.h"
+#include "ResourcesManager.h"
 #include "MovieModule.h"
 #include "MusicPlayer.h"
 #include <SDL_image.h>
@@ -57,7 +57,7 @@ void EndingModule::Start(GameState& state)
 void EndingModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& result)
 {
 	Character& Character = state.Characters[state.SelectedCharacterIndex];
-	SDL_Surface* characterImage = ImagesProvider::Get()->GetCharacterImage(Character.Id);
+	SDL_Surface* characterImage = ResourcesManager::Get()->GetCharacterImage(Character.Id);
 	if (characterTexture == nullptr)
 		characterTexture = SDL_CreateTextureFromSurface(render, characterImage);
 	if (mainLabelTexture == nullptr)

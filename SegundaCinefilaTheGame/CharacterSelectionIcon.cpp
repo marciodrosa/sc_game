@@ -1,5 +1,5 @@
 #include "CharacterSelectionIcon.h"
-#include "ImagesProvider.h"
+#include "ResourcesManager.h"
 
 using namespace sc;
 
@@ -18,11 +18,11 @@ CharacterSelectionIcon::~CharacterSelectionIcon()
 
 void CharacterSelectionIcon::Render(GameState& state, SDL_Renderer* render, int x, int y)
 {
-	SDL_Surface* characterImage = ImagesProvider::Get()->GetCharacterSmallImage(character->Id);
+	SDL_Surface* characterImage = ResourcesManager::Get()->GetCharacterSmallImage(character->Id);
 	if (characterTexture == nullptr)
 		characterTexture = SDL_CreateTextureFromSurface(render, characterImage);
 	if (selectionTexture == nullptr)
-		selectionTexture = SDL_CreateTextureFromSurface(render, ImagesProvider::Get()->GetCharacterCursorImage());
+		selectionTexture = SDL_CreateTextureFromSurface(render, ResourcesManager::Get()->CharacterCursorImage);
 	SDL_Rect destRect;
 	destRect.x = x;
 	destRect.y = y;
