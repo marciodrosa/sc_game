@@ -49,7 +49,7 @@ void MovieModule::Update(GameState& state, SDL_Renderer* render, ModuleResult& r
 	destRect.h = movieImage->h;
 	SDL_RenderCopy(render, movieTexture, nullptr, &destRect);
 	destRect.x += destRect.w + 10;
-	destRect.y = 10;
+	destRect.y = (SC_SCREEN_HEIGHT - mainLabelSurface->h) / 2;
 	destRect.w = mainLabelSurface->w;
 	destRect.h = mainLabelSurface->h;
 	SDL_RenderCopy(render, mainLabelTexture, nullptr, &destRect);

@@ -23,7 +23,10 @@ namespace sc
 		Movie();
 		MovieId Id;
 		std::string Name;
-		std::string Description;
+		std::string Year;
+		std::string Director;
+		std::string Stars;
+		std::string Synopsis;
 		std::string Platform;
 		bool IsExtra;
 
